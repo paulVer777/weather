@@ -1,6 +1,6 @@
 const initialState = {
   lat:null,
-  lng:null
+  lng:null,
 }
 
 const coordsReducer = (state = initialState, action) => {

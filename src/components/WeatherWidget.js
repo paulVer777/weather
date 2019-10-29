@@ -21,8 +21,11 @@ const WeatherWidget = () => {
           lat: latitude.toFixed(3),
           lng: longitude.toFixed(3)
         };
+        
         dispatch({type:'SET_USER_LOCATION', userLocation:{...cords}});
-      }, (error) => console.log(error)
+      }, () =>{
+        dispatch({type:'SET_ERROR', errorMsg:'Please turn on geolocation in your browser to use this app or check internet connection.'})
+      },{timeout:7000}
     );
   }, [dispatch]);
 
@@ -34,7 +37,7 @@ const WeatherWidget = () => {
           const { city_name : city, temp} = parsedResponse.data[0];
           dispatch({type:'SET_WEATHER_INFO', data:{city, temp}});
         })
-        .catch( error => console.log(error));
+        .catch( ()=> dispatch({type:'SET_ERROR', errorMsg:'Something went wrong whilst downloading data. Please check you internet connection.'}));
     }
   },[ dispatch, coordsRedux.lat, coordsRedux.lng]);
 
