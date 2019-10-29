@@ -9,7 +9,7 @@ const WeatherLocation = () => {
   return(  
   <>
   {
-   !city || !temp ? <h2>Loading...</h2> : (
+   !city && !temp ? <h2>Loading...</h2> : (
      <div>
       <h2>{`User location: Lat ${lat}, Lng ${lng}`}</h2>
       <h2>{`Location Name: ${city}`}</h2>
